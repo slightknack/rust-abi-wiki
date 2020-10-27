@@ -48,5 +48,4 @@ and the many more who laid the existing groundwork for this proposal to even be 
 
 ## Contributing
 
-Create a new markdown document, named with the `CamelCase` convention, and open a PR.
-I'll merge it right away, we'll worry about organization and polish as we go on.
+Create a new markdown document, named with the `snake_case.md` convention, and open a PR. I'll merge it right away, we'll worry about organization and polish as we go on.
