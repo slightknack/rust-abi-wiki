@@ -23,3 +23,6 @@ Here's the line of reasoning behind the proposal, quoted:
 > - We ask for feedback.
 >
 > — `@isaac`, IRLO
+
+## Difference Between the Initial Proposal and the General Consensus Now
+After the initial proposal, quite a lot has changed. The initial proposal was very focused on using compile-time macros to determine memory layout. Since this proposal, it's become apparent that more than just memory layout is at stake, and new features must be introduced for FFI creation, binary linking, calling convention, niche expression, etc.
