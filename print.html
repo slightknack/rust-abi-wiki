@@ -178,6 +178,12 @@
 <li>@hanna-kruppe, IRLO</li>
 </ul>
 </blockquote>
+<blockquote>
+<p>So, tossing around the term &quot;ABI&quot; hides a world of work. And you need to consider ABIs you're not working on to preclude conflicts with the ones you are.</p>
+<ul>
+<li>@vomlehn, IRLO</li>
+</ul>
+</blockquote>
 <p>Although this Wiki serves as a general purpose knowledge-base and proposal silo, any the implications of any final proposals must be fully understood.</p>
 <h1><a class="header" href="#what-even-is-an-abi" id="what-even-is-an-abi">What Even Is An ABI?</a></h1>
 <p>ABIs, FFIs, ABI APIs, what's the difference?
@@ -311,16 +317,28 @@ This document stands to serve as a FAQ as to what an ABI is, why they're importa
 <p>The Swift ABI?</p>
 <h1><a class="header" href="#a-plugin-style-architecture" id="a-plugin-style-architecture">A Plugin-Style Architecture</a></h1>
 <h1><a class="header" href="#laying-out-memory" id="laying-out-memory">Laying out Memory</a></h1>
+<blockquote>
+<p>TODO: flesh out
+Include this <a href="https://gankra.github.io/blah/rust-layouts-and-abis/">article</a></p>
+</blockquote>
 <h1><a class="header" href="#memory-management-across-ffi" id="memory-management-across-ffi">Memory Management Across FFI</a></h1>
 <h1><a class="header" href="#calling-conventions" id="calling-conventions">Calling Conventions</a></h1>
 <h1><a class="header" href="#abi-selection" id="abi-selection">ABI Selection</a></h1>
 <h1><a class="header" href="#onering-and-abi-boundaries" id="onering-and-abi-boundaries">OneRing and ABI Boundaries</a></h1>
 <blockquote>
-<p>It seems like developing language-independent ABI which significantly improves over C, without being Rust specific, is possible. Slices, tagged unions, utf8 strings, borrowed closures are features which immediately come to mind and have obvious-ish implementations.
-@matklad, IRLO</p>
+<p>It seems like developing language-independent ABI which significantly improves over C, without being Rust specific, is possible. Slices, tagged unions, utf8 strings, borrowed closures are features which immediately come to mind and have obvious-ish implementations.</p>
+<ul>
+<li>@matklad, IRLO</li>
+</ul>
 </blockquote>
 <h1><a class="header" href="#niches" id="niches">Niches</a></h1>
 <h1><a class="header" href="#apiffi-or-code-as-glue" id="apiffi-or-code-as-glue">API/FFI, or, Code as Glue</a></h1>
+<blockquote>
+<p>It is important to have a robust API/FFI, making it easy to glue C and Rust together, and pass around safe data structures like counted buffers without writing a lot of repetitive unsafe glue code.</p>
+<ul>
+<li>@josh, IRLO</li>
+</ul>
+</blockquote>
 <h1><a class="header" href="#a-final-picture" id="a-final-picture">A Final Picture</a></h1>
 <h1><a class="header" href="#rusts-compiler-infrastructure" id="rusts-compiler-infrastructure">Rust's Compiler Infrastructure</a></h1>
 <p>Now that we've gotten a solid idea about what ABI is, and how it functions, let's talk about Rust. Specifically Rust's compiler. Rust's binaries <em>do</em> have an ABI - but what does that ABI look like? Where is it determined? What's preventing it from being stable?</p>
