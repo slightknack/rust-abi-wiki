@@ -14,4 +14,8 @@ With the Rust compiler infrastructure in mind, the *Towards an RFC* topic intend
 >
 > - @hanna-kruppe, IRLO
 
+> So, tossing around the term "ABI" hides a world of work. And you need to consider ABIs you're not working on to preclude conflicts with the ones you are.
+>
+> - @vomlehn, IRLO
+
 Although this Wiki serves as a general purpose knowledge-base and proposal silo, any the implications of any final proposals must be fully understood.
