@@ -12,6 +12,7 @@
     - [The Swift ABI?](./discussion/swift_abi.md)
     - [A Plugin-Style Architecture](./discussion/plugin_architecture.md)
     - [Laying out Memory](./discussion/layout.md)
+        - [Memory Management Across FFI](./discussion/memory_ffi.md)
     - [Calling Conventions](./discussion/calling.md)
     - [ABI Selection](./discussion/selection.md)
     - [`OneRing` and ABI Boundaries](./discussion/one_ring.md)

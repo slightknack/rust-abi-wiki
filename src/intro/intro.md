@@ -8,4 +8,10 @@ The *Discussion* pages summarize various points of discussion and link out to ot
 
 The *Rust Compiler* section outlines how the rust compiler currently works in regards to the ABI. This section should highlight all relevant parts of the compiler, and discuss how the ideas proposed via the discussion may be implemented.
 
-With the Rust compiler infrastructure in mind, the *Towards an RFC* topic intends to form a precise proposal and actionable plan as to what needs to be done next.
+With the Rust compiler infrastructure in mind, the *Towards an RFC* topic intends to form a precise proposal and actionable plan as to what needs to be done next. It's important that we understand the scope of what's possible:
+
+> You can focus exclusively on that aspect if you want, but in that case you still need to think very carefully to avoid over-stating what use cases your proposal will actually enable.
+>
+> - @hanna-kruppe, IRLO
+
+Although this Wiki serves as a general purpose knowledge-base and proposal silo, any the implications of any final proposals must be fully understood.

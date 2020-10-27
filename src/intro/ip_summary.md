@@ -14,3 +14,12 @@ A stable ABI is no good if it is not resilient to future change.
 ## 'for Rust'
 
 ## Line of Reasoning
+Here's the line of reasoning behind the proposal, quoted:
+
+> - A stable ABI would be really nice for Rust
+> - But it would also be difficult to do
+> - We propose a modular ABI, where compiler-time macros can determine the layout of datastructures so that they are ABI-compliant.
+> - We discuss caveats
+> - We ask for feedback.
+>
+> - ``@isaac`, IRLO
