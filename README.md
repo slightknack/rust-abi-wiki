@@ -1,5 +1,5 @@
 # rust-abi-wiki
-A wiki about Rust's ABI and plans to stabilize it. Open to editing, all PRs will be merged.
+A wiki about Rust's ABI and plans to stabilize it. Open to editing, all PRs will be merged. Read the [latest version of the wiki here](https://slightknack.github.io/rust-abi-wiki).
 
 ## Goals
 To make an extensive wiki on the state of Rust's ABI:
