@@ -1,3 +1,5 @@
+> This is the very first initial proposal that led to the subsequent discussion on IRLO. This document is a bit outdated, and is largely here for archival purposes.
+
 # Proposing a stable modularizable ABI interface for Rust
 Based on the points from the discussion [here](https://users.rust-lang.org/t/modular-abi-for-rust/42590).
 
