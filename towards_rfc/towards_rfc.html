@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>What is an ABI - Rust ABI Wiki</title>
+        <title>Towards an RFC - Rust ABI Wiki</title>
         
         
 
@@ -18,28 +18,28 @@
         <meta name="theme-color" content="#ffffff" />
 
         
-        <link rel="icon" href="favicon.svg">
+        <link rel="icon" href="../favicon.svg">
         
         
-        <link rel="shortcut icon" href="favicon.png">
+        <link rel="shortcut icon" href="../favicon.png">
         
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
         
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="stylesheet" href="../css/print.css" media="print">
         
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
         
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -49,7 +49,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="initial_proposal.html"><strong aria-hidden="true">1.</strong> Initial Proposal</a></li><li class="chapter-item expanded "><a href="what_is_an_ABI.html" class="active"><strong aria-hidden="true">2.</strong> What is an ABI</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro/intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intro/what_is_an_ABI.html"><strong aria-hidden="true">1.1.</strong> What is an ABI</a></li><li class="chapter-item expanded "><a href="../intro/history.html"><strong aria-hidden="true">1.2.</strong> A Short History</a></li><li class="chapter-item expanded "><a href="../intro/ip_summary.html"><strong aria-hidden="true">1.3.</strong> Initial Proposal Summary</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intro/initial_proposal.html"><strong aria-hidden="true">1.3.1.</strong> Initial Proposal</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../discussion/discussion.html"><strong aria-hidden="true">2.</strong> Summary of the Discussion</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../discussion/repr_c.html"><strong aria-hidden="true">2.1.</strong> repr(C) as the Lowest Common Denominator</a></li><li class="chapter-item expanded "><a href="../discussion/terms.html"><strong aria-hidden="true">2.2.</strong> A Clarification of Terms</a></li><li class="chapter-item expanded "><a href="../discussion/generics.html"><strong aria-hidden="true">2.3.</strong> Generics</a></li><li class="chapter-item expanded "><a href="../discussion/swift_abi.html"><strong aria-hidden="true">2.4.</strong> The Swift ABI?</a></li><li class="chapter-item expanded "><a href="../discussion/plugin_architecture.html"><strong aria-hidden="true">2.5.</strong> A Plugin-Style Architecture</a></li><li class="chapter-item expanded "><a href="../discussion/layout.html"><strong aria-hidden="true">2.6.</strong> Laying out Memory</a></li><li class="chapter-item expanded "><a href="../discussion/calling.html"><strong aria-hidden="true">2.7.</strong> Calling Conventions</a></li><li class="chapter-item expanded "><a href="../discussion/selection.html"><strong aria-hidden="true">2.8.</strong> ABI Selection</a></li><li class="chapter-item expanded "><a href="../discussion/one_ring.html"><strong aria-hidden="true">2.9.</strong> OneRing and ABI Boundaries</a></li><li class="chapter-item expanded "><a href="../discussion/niches.html"><strong aria-hidden="true">2.10.</strong> Niches</a></li><li class="chapter-item expanded "><a href="../discussion/glue.html"><strong aria-hidden="true">2.11.</strong> API/FFI, or, Code as Glue</a></li><li class="chapter-item expanded "><a href="../discussion/final_picture.html"><strong aria-hidden="true">2.12.</strong> A Final Picture</a></li></ol></li><li class="chapter-item expanded "><a href="../rust_compiler/rust_compiler.html"><strong aria-hidden="true">3.</strong> Rust's Compiler Infrastructure</a></li><li class="chapter-item expanded "><a href="../towards_rfc/towards_rfc.html" class="active"><strong aria-hidden="true">4.</strong> Towards an RFC</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mvs.html"><strong aria-hidden="true">4.1.</strong> A Minimum Viable Subset</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -131,7 +131,7 @@
 
                     <div class="right-buttons">
                         
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
@@ -163,46 +163,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#what-even-is-an-abi" id="what-even-is-an-abi">What Even Is An ABI?</a></h1>
-<p>ABIs, FFIs, ABI APIs, what's the difference?
-This document stands to serve as a FAQ as to what an ABI is, why they're important, and so on.</p>
-<p>If you think of a question, add it. If you feel an answer is incomplete or lacking, raise an issue - or even better - a PR.</p>
-<h2><a class="header" href="#so-what-is-an-abi-anyway" id="so-what-is-an-abi-anyway">So, what is an ABI anyway?</a></h2>
-<p>An ABI, or Application Binary Interface, is the public-facing API of an executable that determines how other programs can call into it.</p>
-<p>Wikipedia explains this much more succinctly:</p>
-<blockquote>
-<p>In computer software, an application binary interface (ABI) is an interface between two binary program modules; often, one of these modules is a library or operating system facility, and the other is a program that is being run by a user.</p>
-<p>— Wikipedia</p>
-</blockquote>
-<p>ABIs describe two main facilities:</p>
-<ul>
-<li>How data is laid out in memory</li>
-<li>How functions are called.</li>
-</ul>
-<p>The C ABI is the oldest ABI, dating back to C. The C ABI can be used from Rust through the use of <code>extern &quot;C&quot;</code>. The C ABI, however, is fairly lacking, as it only provides basic datatypes and so on.</p>
-<h2><a class="header" href="#what-does-it-mean-for-an-abi-to-be-stable" id="what-does-it-mean-for-an-abi-to-be-stable">What does it mean for an ABI to be stable?</a></h2>
-<p>A stable ABI means that a compiler will consistently produce the same ABI for an executable across versions.</p>
-<p>Right now, this invariant is not present in the Rust Compiler, as the compiler may perform certain memory-layout optimizations (such as zero-sizing), different across versions.</p>
-<h2><a class="header" href="#why-is-a-stable-abi-a-good-thing" id="why-is-a-stable-abi-a-good-thing">Why is a stable ABI a good thing?</a></h2>
-<p>To quote from the initial proposal:</p>
-<blockquote>
-<p>There are many benefits a standardized ABI would bring to Rust. A stable ABI enables dynamic linking between Rust crates, which would allow for Rust programs to support dynamically loaded plugins (a feature common in C/C++). Dynamic linking would result in shorter compile-times and lower disk-space use for projects, as multiple projects could link to the same dylib. For example, imagine having multiple CLIs all link to the same core library crate.</p>
-</blockquote>
-<blockquote>
-<p>TODO: more recent examples.</p>
-</blockquote>
-<h2><a class="header" href="#what-would-a-stable-modular-abi-look-like-for-rust" id="what-would-a-stable-modular-abi-look-like-for-rust">What would a stable modular ABI look like for Rust?</a></h2>
+                        <h1><a class="header" href="#towards-an-rfc" id="towards-an-rfc">Towards an RFC</a></h1>
+<p>Now that we have a solid understanding of both ABI and how they relate to Rust's Compiler, I think it's time we consolidate what we've learned so far and outline the general topics for a (Pre-)RFC.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="initial_proposal.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../rust_compiler/rust_compiler.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
+                        
+                            <a rel="next" href="../mvs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -212,11 +189,15 @@ This document stands to serve as a FAQ as to what an ABI is, why they're importa
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="initial_proposal.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../rust_compiler/rust_compiler.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
+                
+                    <a rel="next" href="../mvs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
@@ -237,14 +218,14 @@ This document stands to serve as a FAQ as to what an ABI is, why they're importa
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
