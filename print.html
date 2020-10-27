@@ -174,15 +174,11 @@
 <p>With the Rust compiler infrastructure in mind, the <em>Towards an RFC</em> topic intends to form a precise proposal and actionable plan as to what needs to be done next. It's important that we understand the scope of what's possible:</p>
 <blockquote>
 <p>You can focus exclusively on that aspect if you want, but in that case you still need to think very carefully to avoid over-stating what use cases your proposal will actually enable.</p>
-<ul>
-<li>@hanna-kruppe, IRLO</li>
-</ul>
+<p>— <code>@hanna-kruppe</code>, IRLO</p>
 </blockquote>
 <blockquote>
 <p>So, tossing around the term &quot;ABI&quot; hides a world of work. And you need to consider ABIs you're not working on to preclude conflicts with the ones you are.</p>
-<ul>
-<li>@vomlehn, IRLO</li>
-</ul>
+<p>— <code>@vomlehn</code>, IRLO</p>
 </blockquote>
 <p>Although this Wiki serves as a general purpose knowledge-base and proposal silo, any the implications of any final proposals must be fully understood.</p>
 <h1><a class="header" href="#what-even-is-an-abi" id="what-even-is-an-abi">What Even Is An ABI?</a></h1>
@@ -205,9 +201,7 @@ This document stands to serve as a FAQ as to what an ABI is, why they're importa
 <p>However, it's important to note that 'ABI' in of itself is a bit of an overloaded term:</p>
 <blockquote>
 <p>More concretely: there are broadly two clusters of meanings for &quot;stable ABI&quot;, the first referring to how language concepts are mapped machine code (e.g. data structure layout, calling conventions) and the latter to the ability to change (upgrade) a software component without rebuilding all the software that interacts with this component. The second is ultimately the responsibility of programmers (e.g. deleting a function from a library breaks both source compatibility and ABI compatibility), but since it's required for many of the benefits ascribed to &quot;stable ABI&quot; and requires compiler support too, anyone pondering this subject should either explicitly acknowledge that aspect (and everything that it enables) as out of scope, or think about what it entails -- which goes far beyond &quot;freezing&quot; data structure layouts, calling conventions, etc.</p>
-<ul>
-<li>@hanna-kruppe, IRLO</li>
-</ul>
+<p>— <code>@hanna-kruppe</code>, IRLO</p>
 </blockquote>
 <h2><a class="header" href="#what-does-it-mean-for-an-abi-to-be-stable" id="what-does-it-mean-for-an-abi-to-be-stable">What does it mean for an ABI to be stable?</a></h2>
 <p>A stable ABI means that a compiler will consistently produce the same ABI for an executable across versions.</p>
@@ -250,25 +244,13 @@ This document stands to serve as a FAQ as to what an ABI is, why they're importa
 <p>Here's the line of reasoning behind the proposal, quoted:</p>
 <blockquote>
 <ul>
-<li>
-<p>A stable ABI would be really nice for Rust</p>
-</li>
-<li>
-<p>But it would also be difficult to do</p>
-</li>
-<li>
-<p>We propose a modular ABI, where compiler-time macros can determine the layout of datastructures so that they are ABI-compliant.</p>
-</li>
-<li>
-<p>We discuss caveats</p>
-</li>
-<li>
-<p>We ask for feedback.</p>
-</li>
-<li>
-<p>``@isaac`, IRLO</p>
-</li>
+<li>A stable ABI would be really nice for Rust</li>
+<li>But it would also be difficult to do</li>
+<li>We propose a modular ABI, where compiler-time macros can determine the layout of datastructures so that they are ABI-compliant.</li>
+<li>We discuss caveats</li>
+<li>We ask for feedback.</li>
 </ul>
+<p>— <code>@isaac</code>, IRLO</p>
 </blockquote>
 <blockquote>
 <p>This is the very first initial proposal that led to the subsequent discussion on IRLO. This document is a bit outdated, and is largely here for archival purposes.</p>
@@ -311,9 +293,7 @@ This document stands to serve as a FAQ as to what an ABI is, why they're importa
 <h2><a class="header" href="#headers" id="headers">Headers</a></h2>
 <blockquote>
 <p>In the C world, there is a relatively simple relation between these two aspects: everything you put into (&quot;public&quot;) headers is part of the ABI, and if you want the ability to e.g. change the layout of a type without breaking ABI compatibility, then you need to make that struct an opaque type in the headers and e.g. expose getter/setter functions for fields whose existence you want to guarantee.</p>
-<ul>
-<li>@hanna-kruppe, IRLO</li>
-</ul>
+<p>— <code>@hanna-kruppe</code>, IRLO</p>
 </blockquote>
 <h1><a class="header" href="#a-clarification-of-terms" id="a-clarification-of-terms">A Clarification of Terms</a></h1>
 <h1><a class="header" href="#generics" id="generics">Generics</a></h1>
@@ -329,18 +309,14 @@ Include this <a href="https://gankra.github.io/blah/rust-layouts-and-abis/">arti
 <h1><a class="header" href="#abi-selection" id="abi-selection">ABI Selection</a></h1>
 <h1><a class="header" href="#onering-and-abi-boundaries" id="onering-and-abi-boundaries">OneRing and ABI Boundaries</a></h1>
 <blockquote>
-<p>It seems like developing language-independent ABI which significantly improves over C, without being Rust specific, is possible. Slices, tagged unions, utf8 strings, borrowed closures are features which immediately come to mind and have obvious-ish implementations.</p>
-<ul>
-<li>@matklad, IRLO</li>
-</ul>
+<p>It seems like developing language-independent ABI which significantly improves over C, without being Rust specific, is possible. Slices, tagged unions, utf8 strings, borrowed closures are features which immediately come to mind and have obvious-ish implementations.
+— <code>@matklad</code>, IRLO</p>
 </blockquote>
 <h1><a class="header" href="#niches" id="niches">Niches</a></h1>
 <h1><a class="header" href="#apiffi-or-code-as-glue" id="apiffi-or-code-as-glue">API/FFI, or, Code as Glue</a></h1>
 <blockquote>
-<p>It is important to have a robust API/FFI, making it easy to glue C and Rust together, and pass around safe data structures like counted buffers without writing a lot of repetitive unsafe glue code.</p>
-<ul>
-<li>@josh, IRLO</li>
-</ul>
+<p>It is important to have a robust API/FFI, making it easy to glue C and Rust together, and pass around safe data structures like counted buffers without writing a lot of repetitive unsafe glue code.
+— <code>@josh</code>, IRLO</p>
 </blockquote>
 <h1><a class="header" href="#a-final-picture" id="a-final-picture">A Final Picture</a></h1>
 <h1><a class="header" href="#rusts-compiler-infrastructure" id="rusts-compiler-infrastructure">Rust's Compiler Infrastructure</a></h1>
