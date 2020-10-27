@@ -20,4 +20,4 @@
     - [A Final Picture](./discussion/final_picture.md)
 - [Rust's Compiler Infrastructure](./rust_compiler/rust_compiler.md)
 - [Towards an RFC](./towards_rfc/towards_rfc.md)
-    - [A Minimum Viable Subset](./mvs.md)
+    - [A Minimum Viable Subset](./towards_rfc/mvs.md)
