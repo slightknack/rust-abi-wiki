@@ -18,9 +18,9 @@ necessary rights to make the contribution under the terms of that license.
 
 1. Ensure any install or build dependencies are removed before the end of the
    layer when doing a build.
-2. Update the README.md with details of changes to the interface, this includes
-   new environment variables, exposed ports, useful file locations and container
-   parameters.
+2. Update the README.md and SUMMARY.md with details of changes to the interface,
+   this includes new chapters, new contributors, useful file locations, and
+   discussion links.
 3. Increase the version numbers in any examples files and the README.md to the
    new version that this Pull Request would represent. The versioning scheme we
    use is [SemVer](http://semver.org/).
@@ -29,7 +29,6 @@ necessary rights to make the contribution under the terms of that license.
    second reviewer to merge it for you.
 
 ## Code of Conduct
-
 
 ### Our Pledge
 

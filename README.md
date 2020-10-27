@@ -5,7 +5,7 @@ A wiki about Rust's ABI and plans to stabilize it. Open to editing, all PRs will
 To make an extensive wiki on the state of Rust's ABI:
 
 - The current API provided
-- The locations in the compiler infratructure
+- The locations in the compiler infrastructure
 - Ideas on how to improve the ABI
 
 The lofty end goal is to create a Pre-RFC → RFC → Development Fork → Merged into Rust, perhaps at the next Edition boundary.

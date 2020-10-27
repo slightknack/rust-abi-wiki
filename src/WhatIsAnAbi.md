@@ -7,7 +7,7 @@ If you think of a question, add it. If you feel an answer is incomplete or lacki
 ## So, what is an ABI anyway?
 An ABI, or Application Binary Interface, is the public-facing API of an executable that determines how other programs can call into it.
 
-Wikipedia explains this much more succintly:
+Wikipedia explains this much more succinctly:
 > In computer software, an application binary interface (ABI) is an interface between two binary program modules; often, one of these modules is a library or operating system facility, and the other is a program that is being run by a user.
 >
 > — Wikipedia

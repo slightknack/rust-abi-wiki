@@ -1,0 +1,6 @@
+[book]
+authors = ["The Rust Programming Language Community"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Rust ABI Wiki"
