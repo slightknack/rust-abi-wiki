@@ -17,7 +17,7 @@ ABIs describe two main facilities:
 - How data is laid out in memory
 - How functions are called.
 
-The C ABI is the oldest ABI, dating back to C. The C ABI can be used from Rust through the use of `extern "C"`. The C ABI, however, is fairly lacking, as it only provides basic datatypes and so on.
+The C ABI is the oldest ABI, dating back to C. The C ABI can be used from Rust through the use of `extern "C"`. The C ABI, however, is fairly lacking, as it only provides basic datatypes and is rather inflexible.
 
 ## What does it mean for an ABI to be stable?
 A stable ABI means that a compiler will consistently produce the same ABI for an executable across versions.
@@ -32,3 +32,5 @@ To quote from the initial proposal:
 > TODO: more recent examples.
 
 ## What would a stable modular ABI look like for Rust?
+
+## What's the difference between an ABI and an API/FFI?
