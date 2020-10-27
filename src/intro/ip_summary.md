@@ -22,4 +22,4 @@ Here's the line of reasoning behind the proposal, quoted:
 > - We discuss caveats
 > - We ask for feedback.
 >
-> - ``@isaac`, IRLO
+> — `@isaac`, IRLO

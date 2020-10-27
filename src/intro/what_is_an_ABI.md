@@ -23,7 +23,7 @@ However, it's important to note that 'ABI' in of itself is a bit of an overloade
 
 > More concretely: there are broadly two clusters of meanings for "stable ABI", the first referring to how language concepts are mapped machine code (e.g. data structure layout, calling conventions) and the latter to the ability to change (upgrade) a software component without rebuilding all the software that interacts with this component. The second is ultimately the responsibility of programmers (e.g. deleting a function from a library breaks both source compatibility and ABI compatibility), but since it's required for many of the benefits ascribed to "stable ABI" and requires compiler support too, anyone pondering this subject should either explicitly acknowledge that aspect (and everything that it enables) as out of scope, or think about what it entails -- which goes far beyond "freezing" data structure layouts, calling conventions, etc.
 >
-> - @hanna-kruppe, IRLO
+> — `@hanna-kruppe`, IRLO
 
 ## What does it mean for an ABI to be stable?
 A stable ABI means that a compiler will consistently produce the same ABI for an executable across versions.

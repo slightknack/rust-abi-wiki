@@ -12,10 +12,10 @@ With the Rust compiler infrastructure in mind, the *Towards an RFC* topic intend
 
 > You can focus exclusively on that aspect if you want, but in that case you still need to think very carefully to avoid over-stating what use cases your proposal will actually enable.
 >
-> - @hanna-kruppe, IRLO
+> — `@hanna-kruppe`, IRLO
 
 > So, tossing around the term "ABI" hides a world of work. And you need to consider ABIs you're not working on to preclude conflicts with the ones you are.
 >
-> - @vomlehn, IRLO
+> — `@vomlehn`, IRLO
 
 Although this Wiki serves as a general purpose knowledge-base and proposal silo, any the implications of any final proposals must be fully understood.
