@@ -32,3 +32,13 @@ To quote from the initial proposal:
 > TODO: more recent examples.
 
 ## What would a stable modular ABI look like for Rust?
+
+- **Fully specified** - There should be no ambiguous cases, either in how to map Rust to the ABI, or how the ABI maps back to Rust objects.
+- **Versioned** - There should be a mechanism to determine which version of the ABI a chunk of code is using by querying the code itself.  The version should follow [semver](https://semver.org/) conventions, and should be both machine and human parseable, so that linkers and loaders can decide if two pieces of code are compatible (from an ABI standpoint).  Under some circumstances, it may be possible for a linker or loader to generate code to bind chunks of code together that have different ABI versions.
+- **Designed for introspection** - There are tools for different operating systems to analyze blobs of code to determine what they do.  For Linux, there are [nm](https://linux.die.net/man/1/nm), [objdump](https://linux.die.net/man/1/objdump), and a number of other utilities.  Unfortunately, the tools are limited by the knowledge encoded in the executable formats; in most cases you can't read the docs for a library by reading the library itself.  A useful addition would be the ability to store the documentation for a library in one of the segments of the library, with tools that are able to find and display that information.
+
+## Additional useful traits
+
+While the ABI we're developing is primarily for the Rust language, it need not be solely for the rust language.  Here are some additional traits that the ABI could have that might be useful.
+
+- **Useful outside of rust** - There are numerous languages with numerous ABI specifications.  In some cases, those ABI specifications have been adopted by other languages, even when the ABI is not the best fit for the other languages.
