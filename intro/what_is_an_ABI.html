@@ -197,6 +197,16 @@ This document stands to serve as a FAQ as to what an ABI is, why they're importa
 <p>TODO: more recent examples.</p>
 </blockquote>
 <h2><a class="header" href="#what-would-a-stable-modular-abi-look-like-for-rust" id="what-would-a-stable-modular-abi-look-like-for-rust">What would a stable modular ABI look like for Rust?</a></h2>
+<ul>
+<li><strong>Fully specified</strong> - There should be no ambiguous cases, either in how to map Rust to the ABI, or how the ABI maps back to Rust objects.</li>
+<li><strong>Versioned</strong> - There should be a mechanism to determine which version of the ABI a chunk of code is using by querying the code itself.  The version should follow <a href="https://semver.org/">semver</a> conventions, and should be both machine and human parseable, so that linkers and loaders can decide if two pieces of code are compatible (from an ABI standpoint).  Under some circumstances, it may be possible for a linker or loader to generate code to bind chunks of code together that have different ABI versions.</li>
+<li><strong>Designed for introspection</strong> - There are tools for different operating systems to analyze blobs of code to determine what they do.  For Linux, there are <a href="https://linux.die.net/man/1/nm">nm</a>, <a href="https://linux.die.net/man/1/objdump">objdump</a>, and a number of other utilities.  Unfortunately, the tools are limited by the knowledge encoded in the executable formats; in most cases you can't read the docs for a library by reading the library itself.  A useful addition would be the ability to store the documentation for a library in one of the segments of the library, with tools that are able to find and display that information.</li>
+</ul>
+<h2><a class="header" href="#additional-useful-traits" id="additional-useful-traits">Additional useful traits</a></h2>
+<p>While the ABI we're developing is primarily for the Rust language, it need not be solely for the rust language.  Here are some additional traits that the ABI could have that might be useful.</p>
+<ul>
+<li><strong>Useful outside of rust</strong> - There are numerous languages with numerous ABI specifications.  In some cases, those ABI specifications have been adopted by other languages, even when the ABI is not the best fit for the other languages.</li>
+</ul>
 <h2><a class="header" href="#whats-the-difference-between-an-abi-and-an-apiffi" id="whats-the-difference-between-an-abi-and-an-apiffi">What's the difference between an ABI and an API/FFI?</a></h2>
 <p>We can go on all day talking about how <em>nice</em> and ABI would be, but after you say (or rather write) the word a couple hundred times, it loses it's meaning and rather encapsulates a set of rather lofty ideals.</p>
 <p>This shouldn't be the case.</p>
