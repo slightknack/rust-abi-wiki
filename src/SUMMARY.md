@@ -22,3 +22,4 @@
 - [Rust's Compiler Infrastructure](./rust_compiler/rust_compiler.md)
 - [Towards an RFC](./towards_rfc/towards_rfc.md)
     - [A Minimum Viable Subset](./towards_rfc/mvs.md)
+- [References and Resources](./references_and_resources/useful_references.md)
