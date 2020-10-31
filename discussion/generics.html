@@ -164,6 +164,70 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#generics" id="generics">Generics</a></h1>
+<blockquote>
+<blockquote>
+<p>The way Rust compiles generics, for example, necessarily inlines lots of &quot;internal&quot; library code (full of hard-coded field offsets, type sizes, etc.) into consumers of the library.</p>
+</blockquote>
+<p>Addendum: when I wrote this sentence I also fell into the trap of focusing just on the &quot;ABI&quot; in the narrow sense of choices made while mapping Rust to machine code. Just as important is the fact that the library's code is copied into the consumer at all. So if a bug is fixed in the library, even if you can recompile that library and re-link everything (because you went through great effort to make type sizes and calling conventions and so on stable), the bug fix still won't reach the applications that use the library. Or will reach it inconsistently depending on where a fresh copy of the generic code was instantiated and where an existing copy of the code was reused (see: -Zshare-generics flag).</p>
+<p>— <code>@hanna-kruppe</code>, IRLO</p>
+</blockquote>
+<blockquote>
+<p>Generics are not a problem as long as all types are known in the interface exposed through the ABI. So it wouldn't be a problem to return <code>Result&lt;i32, String&gt;</code> or even <code>Result&lt;(), Box&lt;dyn Error&gt;&gt;</code> (assuming trait objects have defined ABI).</p>
+<p>They're only an issue for functions like <code>pub fn generic&lt;T, E&gt;() -&gt; Result&lt;T, E&gt;</code> that can't be monomorphized on the library side. For these functions the options are:</p>
+<ul>
+<li>
+<p>Just forbid them. Library interfaces would have to use dyn Trait or concrete types instead. IMHO this is quite sensible limitation, especially for an MVP.</p>
+</li>
+<li>
+<p>Require defining ahead of time which parameters can be used, and compile monomorphic versions just for these types (similar to template instantiations in C++)</p>
+</li>
+<li>
+<p>Do what Swift does and compile a universal version of the generic function that uses run time type information to support arbitrary types. It's a very clever approach from ABI perspective, but it's equivalent of changing everything into dyn Trait, so it may be a poor fit for Rust.</p>
+</li>
+</ul>
+<p>— <code>@kornel</code>, IRLO</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>Just forbid them. Library interfaces would have to use dyn Trait or concrete types instead. IMHO this is quite sensible limitation, especially for an MVP</p>
+</blockquote>
+<p>I think doing that is very reasonable. Then the library developer could still get the second and third behaviors in many cases by doing something like:</p>
+<pre><code>pub fn int_generic() -&gt; Result&lt;i32, Box&lt;dyn Error&gt;&gt; {
+    return generic&lt;i32, Box&lt;dyn Error&gt;&gt;();
+}
+
+pub fn dyn_generic() -&gt; Result&lt;Box&lt;dyn Any&gt;, Box&lt;dyn Error&gt;&gt; {
+    return generic&lt;Box&lt;dyn Any&gt;, Box&lt;dyn Error&gt;&gt;();
+}
+</code></pre>
+<p>— <code>@tmccombs</code>, IRLO</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<ul>
+<li>Just forbid them. Library interfaces would have to use dyn Trait or concrete types instead. IMHO this is quite sensible limitation, especially for an MVP.</li>
+<li>Do what Swift does and compile a universal version of the generic function that uses run time type information to support arbitrary types. It's a very clever approach from ABI perspective, but it's equivalent of changing everything into dyn Trait , so it may be a poor fit for Rust.</li>
+</ul>
+</blockquote>
+<p>Both these options make sense; generally speaking, I think Rust is leaving a lot of potential on the table with its current dyn-safe rules. Finding a way to make more traits dyn-safe (for instance, by adding workarounds to the &quot;no associated constants&quot; rule) would help with both of the above options.</p>
+<p>Also, implementing the second one would probably help a lot with compile times in debug mode, since it removes the need for monomorphizing most template functions.</p>
+<p>— <code>@PoignardAzur</code>, IRLO</p>
+</blockquote>
+<blockquote>
+<p>How about defining a stable ABI subset for &quot;easy&quot; parts of Rust, such as non-inline functions, non-generic structs?</p>
+<p>Then std could be split internally into std-abi-stable and std-hard-parts. Crates could link to std-abi-stable dynamically to reduce bloat, while linking std-hard-parts statically. I imagine over time, as more ABI and std features are set in stone, more things would be moved to std-abi-stable part.</p>
+<p>For example, path functions in libstd are generic for P: AsRef<Path>, but std already uses a pattern of</p>
+<pre><code>fn join&lt;P&gt;(&amp;self, p: P) { self._join(p.as_ref()) }
+</code></pre>
+<p>to reduce generics bloat and defer implementation to non-generic _join method. That non-generic implementation could be moved to an ABI-stable library without need to support generics in the ABI.</p>
+<p>This is similar to how C libraries use macros and inline functions in the .h files. The header files are the API, but not everything is in the ABI. The ABI is only for whatever these macros expand to.</p>
+<p>— <code>@kornel</code>, IRLO</p>
+</blockquote>
+<blockquote>
+<p>@kornel I do want to see a &quot;safe ABI&quot; subset, which is bigger than C and smaller than fully general Rust.</p>
+<p>However, having a shared library for cases like _join would require making the internal _join interface stable, which would increase our stability surface area. And in practice, I don't think most people who want shared library support specifically want it to save disk storage space. They do sometimes want it to save RAM, and a shared library might help a little with that when multiple Rust programs are running simultaneously. But mostly, shared libraries make distribution maintenance easier: you can upgrade a library without rebuilding the world. This wouldn't necessarily solve that problem. And I think it would in practice make distribution of Rust binaries harder for many people, because then they'd need to supply the matching library.</p>
+<p>— <code>@josh</code>, IRLO</p>
+</blockquote>
 
                     </main>
 
