@@ -21,7 +21,7 @@ Special thanks to the the commenters on the original discussion:
 ckaran,
 zicklag,
 isaac,
-CAD97,
+@CAD97,
 robinm,
 tema2,
 josh,
